@@ -1,3 +1,8 @@
+body {
+    background-color: var(--bs-black);
+    color: var(--bs-white);
+}
+
 .jumbotron {
     padding: 2rem 1rem;
     margin-bottom: 2rem;
