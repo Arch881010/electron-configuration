@@ -5,6 +5,8 @@
 /* wikipedia.com */
 /* ptable.com */
 /* periodictable.com */
+
+var valenceElectrons = 0;
 const elements = {
     H: {
        name: 'Hydrogen',
@@ -752,11 +754,13 @@ console.log(list);
  // Now we have our bare elements.
 
  function get_configeration(element) {
+   console.log("<br>")
    const {name, symbol, atomic_number, block} = elements[element];
    const electrons = atomic_number; // NO ISOTOPES
    var used = 0;
    var counter = 0;
    var str = "";
+   console.log(`Getting ${symbol}, as #${atomic_number}.`)
    while (used < electrons) {
       var what = "";
       var brk = false;
@@ -790,21 +794,20 @@ console.log(list);
          if(actual == 0) {
             actual = orbitals[what];
          }
+         //console.info(actual);
          brk = true;
       } else {
          actual = loop;
       }
+      console.log(`Completed loop ${counter + 1}, with this loop: ${actual}, total used: ${used}`);
       str += orb;
       str += `<sup>${actual}</sup>`;
       counter++;
-      if(brk) {
-         var real = `Element | ${name} <br> Symbol | ${symbol} <br> Block&nbsp;&nbsp; | ${block} <br> Config | ${str}`;
-         return document.getElementById('result').innerHTML = real;
-      }
-
+      if(brk) break;
    }
-   var real = `Element | ${name} <br> Symbol | ${symbol} <br> Block | ${block} <br> Config | ${str}`;
-   return document.getElementById('result').innerHTML = real;
+   //var real = `Element | ${name} <br> Symbol | ${symbol} <br> Block | ${block} <br> Config | ${str}`;
+   //return document.getElementById('result').innerHTML = real;
+   generateTable(name, symbol, atomic_number, block, str, valenceElectrons)
  }
  
  const orbitals = {
@@ -816,3 +819,49 @@ console.log(list);
 
  const levels = ["1s", "2s", "2p", "3s", "3p", "4s", "3d", "4p", "5s", "4d", "5p", "6s", "4f", "5d", "6p", "7s", "5f", "6d", "7p", "ext: use sheet"];
  
+
+/**
+ * 
+ * @param {string} element 
+ * @param {string} symbol 
+ * @param {number} atomic_number 
+ * @param {string} block 
+ * @param {string} config 
+ * @param {number} valence 
+ * @returns {WroteHTMLtable} table
+ */
+
+ function generateTable(element, symbol, atomic_number, block, config, valence) {
+   document.getElementById('result').innerHTML = `
+<div class="container text-center left row justify-content-start">
+   <div class='row'>
+      <div class="col-6 col-sm-3">Element</div>
+      <div class="col-6 col-sm-3">${element}</div>
+   </div>
+   <div class="row">
+      <div class="col-6 col-sm-3">Symbol</div>
+      <div class="col-6 col-sm-3">${symbol}</div>
+   </div>
+   <div class="row">
+      <div class="col-6 col-sm-3">Number</div>
+      <div class="col-6 col-sm-3">${atomic_number}</div>
+   </div>
+   <div class="row">
+      <div class="col-6 col-sm-3">Block</div>
+      <div class="col-6 col-sm-3">${block}</div>
+   </div>
+   <div class="row">
+      <div class="col-6 col-sm-3">Config</div>
+      <div class="col-6">${config}</div>
+   </div>
+   
+</div>
+`;
+};
+
+/* WIP?
+<div class="row">
+      <div class="col-6 col-sm-3">Valence Electrons</div>
+      <div class="col-6 col-sm-3">${valence}</div>
+   </div> 
+*/

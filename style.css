@@ -3,6 +3,11 @@ body {
     color: var(--bs-white);
 }
 
+.col-6 {
+    border: solid var(--bs-white);
+    box-sizing: border-box;
+}
+
 .jumbotron {
     padding: 2rem 1rem;
     margin-bottom: 2rem;
