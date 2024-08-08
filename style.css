@@ -14,13 +14,16 @@ body {
     background-color: #e9ecef;
     border-radius: 0.3rem;
 }
+
 .navbar {
-   padding: 1rem;
+    padding: 1rem;
 }
+
 .navbar-nav {
     display: flex;
     justify-content: space-evenly;
 }
+
 .post-it {
     width: 100%;
     height: 500px;
@@ -29,9 +32,11 @@ body {
 .items-center {
     align-items: center;
 }
+
 .items-right {
     align-items: right;
 }
+
 .items-left {
     align-items: left;
 }
